@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "gestion_autos",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

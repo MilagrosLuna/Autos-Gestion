@@ -1,0 +1,140 @@
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="card rounded-6 text-black">
+      <div class="card-body p-md-5 mx-md-4">
+        <h4 class="text-center mb-1 pb-1">Cargar Auto</h4>
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="text"
+                id="patente"
+                class="form-control"
+                formControlName="patente"
+              />
+              <label mdbLabel class="form-label" for="patente">Patente</label>
+            </mdb-form-control>
+            <div *ngIf="form.controls['patente'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['patente'].errors!['required'] &&
+                  form.controls['patente'].touched
+                "
+                >Debe ingresar la patente.</small
+              >
+            </div>
+          </div>
+
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="text"
+                id="titular"
+                class="form-control"
+                formControlName="titular"
+              />
+              <label mdbLabel class="form-label" for="titular">titular</label>
+            </mdb-form-control>
+            <div *ngIf="form.controls['titular'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['titular'].errors!['required'] &&
+                  form.controls['titular'].touched
+                "
+                >Debe ingresar el titular.</small
+              >
+            </div>
+          </div>
+
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="text"
+                id="aseguradora"
+                class="form-control"
+                formControlName="aseguradora"
+              />
+              <label mdbLabel class="form-label" for="aseguradora"
+                >aseguradora</label
+              >
+            </mdb-form-control>
+            <div *ngIf="form.controls['aseguradora'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['aseguradora'].errors!['required'] &&
+                  form.controls['aseguradora'].touched
+                "
+                >Debe ingresar la aseguradora.</small
+              >
+            </div>
+          </div>
+
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="number"
+                id="kilometraje"
+                class="form-control"
+                formControlName="kilometraje"
+              />
+              <label mdbLabel class="form-label" for="kilometraje"
+                >Kilometraje</label
+              >
+            </mdb-form-control>
+            <div *ngIf="form.controls['kilometraje'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['kilometraje'].errors!['required'] &&
+                  form.controls['kilometraje'].touched
+                "
+                >Debe ingresar un kilometraje.</small
+              >
+            </div>
+          </div>
+
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="number"
+                id="multas"
+                class="form-control"
+                formControlName="multas"
+              />
+              <label mdbLabel class="form-label" for="multas">Multas</label>
+            </mdb-form-control>
+            <div *ngIf="form.controls['multas'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['multas'].errors!['required'] &&
+                  form.controls['multas'].touched
+                "
+                >Debe ingresar si tiene multas.</small
+              >
+            </div>
+          </div>
+
+     
+
+          <div class="text-center pt-1 mb-1 pb-1">
+            <button
+              class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+              type="submit"
+            >
+              cargar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

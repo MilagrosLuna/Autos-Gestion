@@ -1,0 +1,115 @@
+<div class="container py-5">
+  <div class="input-group mb-3">
+    <input
+      [(ngModel)]="searchTerm"
+      (keyup)="search()"
+      placeholder="Buscar"
+      class="form-control"
+    />
+    <span class="input-group-text" id="basic-addon2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-search"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+        />
+      </svg>
+    </span>
+  </div>
+  <div class="input-group mb-3">
+    <select [(ngModel)]="orderType" class="form-select" (change)="sortAutos()">
+      <option [value]="OrderType.Patente" selected>Patente</option>
+      <option [value]="OrderType.Titular">Titular</option>
+      <option [value]="OrderType.Aseguradora">Aseguradora</option>
+      <option [value]="OrderType.Kilometraje">Kilometraje</option>
+      <option [value]="OrderType.Multas">Multas</option>
+    </select>
+  </div>
+
+  <div class="container py-5">
+    <div *ngIf="loading" class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+    </div>
+    <div *ngIf="!loading" class="row row-cols-1 row-cols-md-2 g-4">
+      <div *ngFor="let auto of filteredAutos" class="col">
+        <div class="card h-100">
+          <div class="card-body d-grid">
+            <h5 class="card-title">
+              {{ auto.data.patente && auto.data.patente.toUpperCase() }}
+            </h5>
+
+            <div class="card-text">
+              <div class="card-text">
+                <p class="mb-2">
+                  Titular:
+                  {{
+                    auto.data.titular &&
+                      auto.data.titular.charAt(0).toUpperCase() +
+                        auto.data.titular.slice(1).toLowerCase()
+                  }}
+                </p>
+                <p class="mb-2">
+                  Aseguradora:
+                  {{
+                    auto.data.aseguradora &&
+                      auto.data.aseguradora.charAt(0).toUpperCase() +
+                        auto.data.aseguradora.slice(1).toLowerCase()
+                  }}
+                </p>
+
+                <p class="mb-2">
+                  Kilometraje:
+                  {{ auto.data.kilometraje }}
+                </p>
+
+                <p class="mb-2">
+                  Multas:
+                  {{ auto.data.multas }}
+                </p>
+
+                <!-- <p class="mb-2" style="max-height: 100px; overflow-y: auto">
+                  Detalle: {{ auto.data.detalle }}
+                </p> -->
+              </div>
+
+              <div class="mt-auto">
+                <!-- <button
+                    *ngIf="esAdmin"
+                    type="button"
+                    class="btn btn-primary me-2"
+                    (click)="modificar(auto)"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button
+                    *ngIf="esAdmin"
+                    type="button"
+                    class="btn btn-danger me-2"
+                    (click)="borrar(auto)"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </button>
+                   -->
+
+                <!-- <button
+                    type="button"
+                    class="btn btn-warning me-2"
+                    (click)="createPDF(auto)"
+                  >
+                    <i class="fa-solid fa-print"></i>
+                  </button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

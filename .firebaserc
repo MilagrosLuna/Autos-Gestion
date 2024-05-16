@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "autos-luna": {
+      "hosting": {
+        "gestion_autos": [
+          "autos-luna"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "autos-luna"
+  }
+}
