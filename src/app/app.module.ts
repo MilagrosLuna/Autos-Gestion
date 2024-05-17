@@ -31,7 +31,16 @@ import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { AltaComponent } from './components/alta/alta.component';
-import { ListadoComponent } from './components/listado/listado.component';
+import { ListadoComponent } from './components/listado-autos/listado.component';
+import { AlquilerComponent } from './components/alquiler/alquiler.component';
+import { ServicioComponent } from './components/servicio/servicio.component';
+import { CuentasComponent } from './components/cuentas/cuentas.component';
+import { ListadoServiciosComponent } from './components/listado-servicios/listado-servicios.component';
+import { CurrencyPipe } from '@angular/common';
+import { DeleteAutoComponent } from './components/modals/delete-auto/delete-auto.component';
+import { DeleteServicioComponent } from './components/modals/delete-servicio/delete-servicio.component';
+import { ModifyAutoComponent } from './components/modals/modify-auto/modify-auto.component';
+import { ModifyServicioComponent } from './components/modals/modify-servicio/modify-servicio.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +54,17 @@ import { ListadoComponent } from './components/listado/listado.component';
     HomeComponent,
     AltaComponent,
     ListadoComponent,
+    AlquilerComponent,
+    CuentasComponent,
+    ServicioComponent,
+    ListadoServiciosComponent,
+    DeleteAutoComponent,
+    DeleteServicioComponent,
+    ModifyAutoComponent,
+    ModifyServicioComponent,
   ],
   imports: [
+    CurrencyPipe,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

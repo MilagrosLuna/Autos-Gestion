@@ -1,0 +1,136 @@
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="card rounded-6 text-black">
+      <div class="card-body p-md-5 mx-md-4">
+        <h4 class="text-center mb-1 pb-1">Cargar Servicio</h4>
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="text"
+                id="patente"
+                class="form-control"
+                formControlName="patente"
+              />
+              <label mdbLabel class="form-label" for="patente">Patente</label>
+            </mdb-form-control>
+            <div *ngIf="form.controls['patente'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['patente'].errors!['required'] &&
+                  form.controls['patente'].touched
+                "
+                >Debe ingresar la patente.</small
+              >
+            </div>
+          </div>
+
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="text"
+                id="tallerMecanico"
+                class="form-control"
+                formControlName="tallerMecanico"
+              />
+              <label mdbLabel class="form-label" for="tallerMecanico"
+                >Taller Mecanico</label
+              >
+            </mdb-form-control>
+            <div *ngIf="form.controls['tallerMecanico'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['tallerMecanico'].errors!['required'] &&
+                  form.controls['tallerMecanico'].touched
+                "
+                >Debe ingresar el taller Mecanico.</small
+              >
+            </div>
+          </div>
+
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="date"
+                id="fecha"
+                class="form-control"
+                formControlName="fecha"
+              />
+              <label mdbLabel class="form-label" for="fecha">Fecha</label>
+            </mdb-form-control>
+            <div *ngIf="form.controls['fecha'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['fecha'].errors!['required'] &&
+                  form.controls['fecha'].touched
+                "
+                >Debe seleccionar una fecha.</small
+              >
+            </div>
+          </div>
+
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="text"
+                id="detalle"
+                class="form-control"
+                formControlName="detalle"
+              />
+              <label mdbLabel class="form-label" for="detalle">Detalle</label>
+            </mdb-form-control>
+            <div *ngIf="form.controls['detalle'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['detalle'].errors!['required'] &&
+                  form.controls['detalle'].touched
+                "
+                >Debe ingresar el detalle.</small
+              >
+            </div>
+          </div>
+
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="number"
+                id="precio"
+                class="form-control"
+                formControlName="precio"
+              />
+              <label mdbLabel class="form-label" for="precio">Precio</label>
+            </mdb-form-control>
+            <div *ngIf="form.controls['precio'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['precio'].errors!['required'] &&
+                  form.controls['precio'].touched
+                "
+                >Debe ingresar un precio.</small
+              >
+            </div>
+          </div>
+
+          <div class="text-center pt-1 mb-1 pb-1">
+            <button
+              class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+              type="submit"
+            >
+              cargar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

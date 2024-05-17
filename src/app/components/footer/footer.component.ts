@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
-import { SERVICE_ID, TEMPLATE_ID, USER_ID } from 'src/main';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-footer',
@@ -19,36 +18,7 @@ export class FooterComponent {
     });
   }
 
-  onSubmit(e: Event) {
-    e.preventDefault();
-    if (this.contactForm.valid) {
-      this.sendEmail();
-    } else {
-      Swal.fire({
-        title: 'Error',
-        text: 'Por favor, completa todos los campos correctamente.',
-        icon: 'error',
-      });
-    }
-  }
 
-  public sendEmail() {
-    emailjs.send(SERVICE_ID, TEMPLATE_ID, this.contactForm.value, USER_ID).then(
-      (result: EmailJSResponseStatus) => {
-        this.contactForm.reset();
-        Swal.fire({
-          title: 'Éxito',
-          text: 'El correo electrónico se ha enviado correctamente.',
-          icon: 'success',
-        });
-      },
-      (error: any) => {
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un error al enviar el correo electrónico.',
-          icon: 'error',
-        });
-      }
-    );
-  }
+
+ 
 }

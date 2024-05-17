@@ -9,10 +9,6 @@ import { getAuth } from 'firebase/auth';
 import { environment } from 'src/environments/environment';
 const firebaseConfigg = environment.firebaseConfig;
 
-export const SERVICE_ID = 'service_phoenix';
-export const TEMPLATE_ID = 'template_lbtq95w';
-export const USER_ID = 'c27M8Q4FXi0vsbfvL';
-
 export const app = initializeApp(firebaseConfigg);
 export const firestore = getFirestore(app);
 export const storage = getStorage(app);

@@ -7,7 +7,11 @@ import { HomeComponent } from './components/home/home.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { AuthGuard } from './servicesAndUtils/guard';
 import { AltaComponent } from './components/alta/alta.component';
-import { ListadoComponent } from './components/listado/listado.component';
+import { ListadoComponent } from './components/listado-autos/listado.component';
+import { AlquilerComponent } from './components/alquiler/alquiler.component';
+import { CuentasComponent } from './components/cuentas/cuentas.component';
+import { ServicioComponent } from './components/servicio/servicio.component';
+import { ListadoServiciosComponent } from './components/listado-servicios/listado-servicios.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,12 +22,13 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuard],
     children: [
-       { path: 'alta', component: AltaComponent },
-       { path: 'listado', component: ListadoComponent },
-      // { path: 'graficos', component: GraficosComponent },
-      // { path: 'cuentas', component: CuentasComponent },
+      { path: 'alta', component: AltaComponent },
+      { path: 'listado', component: ListadoComponent },
+      { path: 'alquiler', component: AlquilerComponent },
+      { path: 'servicio', component: ServicioComponent },
+      { path: 'listadoS', component: ListadoServiciosComponent },
+      { path: 'cuentas', component: CuentasComponent },
       // { path: 'caja', component: CajaComponent },
-      // { path: 'presupuestos', component: PresupuestosComponent },
     ],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -32,6 +37,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -6,6 +6,10 @@ import { FirebaseService } from 'src/app/servicesAndUtils/firebase.service';
 // (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 import { Auto } from 'src/app/classes/auto';
+import { MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { DeleteAutoComponent } from '../modals/delete-auto/delete-auto.component';
+import { ConfirmationService } from 'src/app/servicesAndUtils/confirmation.service';
+import { ModifyAutoComponent } from '../modals/modify-auto/modify-auto.component';
 
 @Component({
   selector: 'app-listado',
@@ -26,18 +30,21 @@ export class ListadoComponent {
     Aseguradora: 'aseguradora',
     Kilometraje: 'kilometraje',
     Multas: 'multas',
+    Chofer: 'chofer',
   };
 
   orderType: string = this.OrderType.Patente;
   constructor(
-    private firebase: FirebaseService // private modalService: MdbModalService,
+    private firebase: FirebaseService,
+    private confirmationService: ConfirmationService,
+    private modalService: MdbModalService
   ) {}
 
   async ngOnInit(): Promise<void> {
     this.loading = true;
     await this.verificar();
     await this.initializeData();
-    // await this.subscribeToConfirmationEvents();
+    await this.subscribeToConfirmationEvents();
     this.sortAutos();
     this.loading = false;
   }
@@ -58,18 +65,19 @@ export class ListadoComponent {
     this.filteredAutos = this.Autos;
   }
 
-  // private async subscribeToConfirmationEvents(): Promise<void> {
-  //   this.confirmationService.getConfirmationState().subscribe(async (state) => {
-  //     if (state) {
-  //       await this.reloasdData();
-  //     }
-  //   });
-
-  //   this.confirmationService.getDeleteEvent().subscribe(async () => {
-  //     await this.reloasdData();
-  //   });
-
-  // }
+  private async subscribeToConfirmationEvents(): Promise<void> {
+    this.confirmationService.getConfirmationState().subscribe(async (state) => {
+      if (state) {
+        await this.reloasdData();
+      }
+    });
+    this.confirmationService.getDeleteEvent().subscribe(async () => {
+      await this.reloasdData();
+    });
+    this.confirmationService.getmodifyAutoEvent().subscribe(async () => {
+      await this.reloasdData();
+    });
+  }
 
   async verificar() {
     this.admins = await this.firebase.obtener('admins');
@@ -107,79 +115,30 @@ export class ListadoComponent {
         a.data.aseguradora && b.data.aseguradora
           ? a.data.aseguradora.localeCompare(b.data.aseguradora)
           : 0,
+      [this.OrderType.Chofer]: (a: any, b: any) =>
+        a.data.chofer && b.data.chofer
+          ? a.data.chofer.localeCompare(b.data.chofer)
+          : 0,
       [this.OrderType.Kilometraje]: (a: any, b: any) =>
         a.data.kilometraje - b.data.kilometraje,
       [this.OrderType.Multas]: (a: any, b: any) =>
         a.data.multas - b.data.multas,
     };
 
-    this.filteredAutos.sort(
-      orderFunctions[this.orderType] ||
-        ((a: any, b: any) => a.data.cliente.localeCompare(b.data.cliente))
-    );
+    this.filteredAutos.sort(orderFunctions[this.orderType]);
   }
 
-  // async createPDF(auto: any) {
-  //   let autoCopy = JSON.parse(JSON.stringify(auto));
-  //   let now = new Date();
-  //   let fechaEmision = `${now.getDate()}/${
-  //     now.getMonth() + 1
-  //   }/${now.getFullYear()} a las ${now.getHours()}:${now.getMinutes()} hs`;
-  //   if (!autoCopy.data.numero) {
-  //     autoCopy.data.numero = 0;
-  //   }
-  //   if (!autoCopy.data.comentario || autoCopy.data.comentario==='') {
-  //     autoCopy.data.comentario = '---';
-  //   }
-  //   let pdfDefinition: any = {
-  //     content: [
-  //       {
-  //         text: `Orden de impresión auto N°: ${autoCopy.data.numero}`,
-  //         fontSize: 20,
-  //         margin: [0, 5, 0, 0],
-  //       },
-  //       {
-  //         text: `Fecha de emisión: ${fechaEmision}`,
-  //         fontSize: 16,
-  //         margin: [0, 5, 0, 0],
-  //       },
-  //       {
-  //         text: `-------------------------------------------------------------------------------------------------------------------`,
-  //         fontSize: 16,
-  //         margin: [0, 10, 0, 0],
-  //       },
-  //       {
-  //         text: `Cliente: ${autoCopy.data.cliente} `,
-  //         fontSize: 16,
-  //         margin: [0, 8, 0, 0],
-  //       },
-  //       {
-  //         text: `Trabajo: ${autoCopy.data.trabajo}, ${autoCopy.data.detalle} `,
-  //         fontSize: 16,
-  //         margin: [0, 8, 0, 0],
-  //       },
-  //       {
-  //         text: `Fecha: ${autoCopy.data.fecha}
-  //         Fecha de Entrega: ${autoCopy.data.fechaEntrega} `,
-  //         fontSize: 16,
-  //         margin: [0, 8, 0, 0],
-  //       },
-  //       {
-  //         text: `Precio: $${autoCopy.data.precio}
-  //         Seña: $${autoCopy.data.sena} `,
-  //         fontSize: 16,
-  //         margin: [0, 8, 0, 0],
-  //       },
-  //       {
-  //         text: `Comentarios:  ${autoCopy.data.comentario} `,
-  //         fontSize: 16,
-  //         margin: [0, 5, 0, 0],
-  //       },
-  //     ],
-  //   };
+  modificar(auto: any) {
+    this.confirmationService.setConfirmationState(false);
+    const modalRef = this.modalService.open(ModifyAutoComponent, {
+      data: { auto },
+    });
+  }
 
-  //   const pdf = pdfMake.createPdf(pdfDefinition);
-  //   //pdf.download(`auto_${auto.data.numero}`);
-  //   pdf.open();
-  // }
+  borrar(auto: any) {
+    this.confirmationService.setConfirmationState(false);
+    const modalRef = this.modalService.open(DeleteAutoComponent, {
+      data: { auto },
+    });
+  }
 }

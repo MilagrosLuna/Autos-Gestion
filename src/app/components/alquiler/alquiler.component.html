@@ -2,7 +2,7 @@
   <div class="row d-flex justify-content-center align-items-center h-100">
     <div class="card rounded-6 text-black">
       <div class="card-body p-md-5 mx-md-4">
-        <h4 class="text-center mb-1 pb-1">Cargar Auto</h4>
+        <h4 class="text-center mb-1 pb-1">Cargar alquiler</h4>
         <form (ngSubmit)="onSubmit()" [formGroup]="form">
           <div class="m-3">
             <mdb-form-control>
@@ -32,135 +32,137 @@
               <input
                 mdbInput
                 type="text"
-                id="titular"
-                class="form-control"
-                formControlName="titular"
-              />
-              <label mdbLabel class="form-label" for="titular">Titular</label>
-            </mdb-form-control>
-            <div *ngIf="form.controls['titular'].errors != null">
-              <small
-                class="invalid"
-                *ngIf="
-                  form.controls['titular'].errors!['required'] &&
-                  form.controls['titular'].touched
-                "
-                >Debe ingresar el titular.</small
-              >
-            </div>
-          </div>
-
-          <div class="m-3">
-            <mdb-form-control>
-              <input
-                mdbInput
-                type="text"
-                id="aseguradora"
-                class="form-control"
-                formControlName="aseguradora"
-              />
-              <label mdbLabel class="form-label" for="aseguradora"
-                >Aseguradora</label
-              >
-            </mdb-form-control>
-            <div *ngIf="form.controls['aseguradora'].errors != null">
-              <small
-                class="invalid"
-                *ngIf="
-                  form.controls['aseguradora'].errors!['required'] &&
-                  form.controls['aseguradora'].touched
-                "
-                >Debe ingresar la aseguradora.</small
-              >
-            </div>
-          </div>
-
-          <div class="m-3">
-            <mdb-form-control>
-              <input
-                mdbInput
-                type="number"
-                id="kilometraje"
-                class="form-control"
-                formControlName="kilometraje"
-              />
-              <label mdbLabel class="form-label" for="kilometraje"
-                >Kilometraje</label
-              >
-            </mdb-form-control>
-            <div *ngIf="form.controls['kilometraje'].errors != null">
-              <small
-                class="invalid"
-                *ngIf="
-                  form.controls['kilometraje'].errors!['required'] &&
-                  form.controls['kilometraje'].touched
-                "
-                >Debe ingresar un kilometraje.</small
-              >
-            </div>
-          </div>
-
-          <div class="m-3">
-            <mdb-form-control>
-              <input
-                mdbInput
-                type="number"
-                id="multas"
-                class="form-control"
-                formControlName="multas"
-              />
-              <label mdbLabel class="form-label" for="multas">Multas</label>
-            </mdb-form-control>
-            <div *ngIf="form.controls['multas'].errors != null">
-              <small
-                class="invalid"
-                *ngIf="
-                  form.controls['multas'].errors!['required'] &&
-                  form.controls['multas'].touched
-                "
-                >Debe ingresar si tiene multas.</small
-              >
-            </div>
-          </div>
-
-          <div class="m-3">
-            <mdb-form-control>
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="alquilado"
-                formControlName="alquilado"
-              />
-
-              <label mdbLabel class="form-label" for="alquilado"
-                >Alquilado</label
-              >
-            </mdb-form-control>
-            <div *ngIf="form.controls['alquilado'].errors != null">
-              <small
-                class="invalid"
-                *ngIf="
-                  form.controls['alquilado'].errors!['required'] &&
-                  form.controls['alquilado'].touched
-                "
-                >Debe marcar si está alquilado.</small
-              >
-            </div>
-          </div>
-
-          <div class="m-3" *ngIf="form.get('alquilado')?.value">
-            <mdb-form-control>
-              <input
-                mdbInput
-                type="text"
                 id="chofer"
                 class="form-control"
                 formControlName="chofer"
               />
               <label mdbLabel class="form-label" for="chofer">Chofer</label>
             </mdb-form-control>
+            <div *ngIf="form.controls['chofer'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['chofer'].errors!['required'] &&
+                  form.controls['chofer'].touched
+                "
+                >Debe ingresar el chofer.</small
+              >
+            </div>
           </div>
+
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="date"
+                id="fechaInicio"
+                class="form-control"
+                formControlName="fechaInicio"
+              />
+              <label mdbLabel class="form-label" for="fechaInicio"
+                >Fecha Inicio</label
+              >
+            </mdb-form-control>
+            <div *ngIf="form.controls['fechaInicio'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['fechaInicio'].errors!['required'] &&
+                  form.controls['fechaInicio'].touched
+                "
+                >Debe seleccionar una fechaInicio.</small
+              >
+            </div>
+          </div>
+
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="date"
+                id="fechaFin"
+                class="form-control"
+                formControlName="fechaFin"
+              />
+              <label mdbLabel class="form-label" for="fechaFin"
+                >Fecha Fin</label
+              >
+            </mdb-form-control>
+            <div *ngIf="form.controls['fechaFin'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['fechaFin'].errors!['required'] &&
+                  form.controls['fechaFin'].touched
+                "
+                >Debe seleccionar una fecha Fin.</small
+              >
+            </div>
+          </div>
+
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="text"
+                id="detalle"
+                class="form-control"
+                formControlName="detalle"
+              />
+              <label mdbLabel class="form-label" for="detalle">Detalle</label>
+            </mdb-form-control>
+            <div *ngIf="form.controls['detalle'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['detalle'].errors!['required'] &&
+                  form.controls['detalle'].touched
+                "
+                >Debe ingresar el detalle.</small
+              >
+            </div>
+          </div>
+
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="text"
+                id="precioDiario"
+                class="form-control"
+                formControlName="precioDiario"
+                (blur)="calculateTotalPrice()"
+              />
+              <label mdbLabel class="form-label" for="precio"
+                >precio Diario</label
+              >
+            </mdb-form-control>
+            <div *ngIf="form.controls['precioDiario'].errors != null">
+              <small
+                class="invalid"
+                *ngIf="
+                  form.controls['precioDiario'].errors!['required'] &&
+                  form.controls['precioDiario'].touched
+                "
+                >Debe ingresar un precioDiario.</small
+              >
+            </div>
+          </div>
+
+          <div class="m-3">
+            <mdb-form-control>
+              <input
+                mdbInput
+                type="number"
+                id="precioTotal"
+                class="form-control"
+                formControlName="precioTotal"
+                readonly
+              />
+              <label mdbLabel class="form-label" for="precioTotal">Precio Total</label>
+            </mdb-form-control>
+          </div>
+          
 
           <div class="text-center pt-1 mb-1 pb-1">
             <button

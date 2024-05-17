@@ -28,6 +28,7 @@
       <option [value]="OrderType.Aseguradora">Aseguradora</option>
       <option [value]="OrderType.Kilometraje">Kilometraje</option>
       <option [value]="OrderType.Multas">Multas</option>
+      <option [value]="OrderType.Chofer">Chofer</option>
     </select>
   </div>
 
@@ -42,7 +43,7 @@
         <div class="card h-100">
           <div class="card-body d-grid">
             <h5 class="card-title">
-              {{ auto.data.patente && auto.data.patente.toUpperCase() }}
+              {{ auto.data.patente }}
             </h5>
 
             <div class="card-text">
@@ -74,29 +75,35 @@
                   {{ auto.data.multas }}
                 </p>
 
-                <!-- <p class="mb-2" style="max-height: 100px; overflow-y: auto">
-                  Detalle: {{ auto.data.detalle }}
-                </p> -->
+                <p class="mb-2 text-success" *ngIf="auto.data.alquilado">
+                  Alquilado
+                </p>
+
+                <p class="mb-2" *ngIf="auto.data.alquilado">
+                  Chofer:
+                  {{
+                    auto.data.chofer &&
+                      auto.data.chofer.charAt(0).toUpperCase() +
+                        auto.data.chofer.slice(1).toLowerCase()
+                  }}
+                </p>
               </div>
 
               <div class="mt-auto">
-                <!-- <button
-                    *ngIf="esAdmin"
-                    type="button"
-                    class="btn btn-primary me-2"
-                    (click)="modificar(auto)"
-                  >
-                    <i class="fas fa-edit"></i>
-                  </button>
-                  <button
-                    *ngIf="esAdmin"
-                    type="button"
-                    class="btn btn-danger me-2"
-                    (click)="borrar(auto)"
-                  >
-                    <i class="fas fa-trash"></i>
-                  </button>
-                   -->
+                <button
+                  type="button"
+                  class="btn btn-primary me-2"
+                  (click)="modificar(auto)"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger me-2"
+                  (click)="borrar(auto)"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
 
                 <!-- <button
                     type="button"

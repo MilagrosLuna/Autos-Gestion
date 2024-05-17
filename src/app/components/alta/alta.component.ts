@@ -22,6 +22,8 @@ export class AltaComponent {
     this.form = new FormGroup({
       patente: new FormControl('', [Validators.required]),
       titular: new FormControl('', [Validators.required]),
+      alquilado: new FormControl(false),
+      chofer: new FormControl(''),
       aseguradora: new FormControl('', [Validators.required]),
       kilometraje: new FormControl('', [
         Validators.required,
@@ -51,11 +53,13 @@ export class AltaComponent {
   async cargar() {
     let auto = new Auto();
 
-    auto.patente = this.form.value.patente;
+    auto.patente = this.form.value.patente.toUpperCase();
     auto.titular = this.form.value.titular;
     auto.aseguradora = this.form.value.aseguradora;
     auto.kilometraje = this.form.value.kilometraje;
     auto.multas = this.form.value.multas;
+    auto.alquilado = this.form.value.alquilado;
+    auto.chofer = this.form.value.chofer;
 
     // const contadorSnap = await this.firebase.obtenrUno('contadores', 'laburos');
     // let contador = contadorSnap?.data['contador'];
