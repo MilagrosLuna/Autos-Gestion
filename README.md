@@ -1,27 +1,48 @@
-# GestionAutos
+# Gestión de Flota de Vehículos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.8.
+## Descripción
 
-## Development server
+Este proyecto es un sistema de gestión de flota de vehículos diseñado para facilitar la administración de autos, servicios y alquileres. Permite a los usuarios cargar y gestionar información detallada de cada vehículo, registrar servicios, administrar alquileres, y visualizar secciones específicas para cada categoría. Además, incluye una sección de detalles que muestra información consolidada por patente y dos gráficos generales que ofrecen una visión del balance económico y la cantidad de servicios por patente.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Características
 
-## Code scaffolding
+- **Carga de Autos:** Permite ingresar nuevos vehículos a la flota con detalles como patente, titular, aseguradora, kilometraje y multas.
+- **Gestión de Servicios:** Registra los servicios realizados a cada vehículo, incluyendo detalles del taller mecánico, precio y fecha del servicio.
+- **Administración de Alquileres:** Controla los alquileres de los vehículos, especificando la patente, detalle del alquiler, chofer, precio diario y total, y las fechas de inicio y fin del alquiler.
+- **Visualización por Secciones:** Ofrece la posibilidad de ver cada sección (Autos, Servicios, Alquileres) de manera independiente para una gestión más eficiente.
+- **Sección de Detalles:** Muestra un resumen detallado de cada patente, incluyendo el total de alquileres, servicios y el balance económico.
+- **Gráficos Generales:** Presenta dos gráficos que ilustran el balance económico general y la cantidad de servicios realizados por patente.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Tecnologías Utilizadas
 
-## Build
+- Angular para el frontend.
+- Firebase para la base de datos y el backend.
+- Chart.js para la visualización de gráficos.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Instalación
 
-## Running unit tests
+Para instalar y ejecutar este proyecto localmente, sigue estos pasos:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clona el repositorio en tu máquina local.
+2. Navega al directorio del proyecto y ejecuta `npm install` para instalar las dependencias.
+3. Inicia el servidor de desarrollo con `ng serve`.
+4. Abre tu navegador y visita `http://localhost:4200/`.
 
-## Running end-to-end tests
+## Uso
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Para comenzar a utilizar la aplicación:
 
-## Further help
+1. Navega a la sección de Autos para cargar y ver los vehículos.
+2. Utiliza la sección de Servicios para añadir y consultar servicios.
+3. Administra los alquileres en la sección de Alquileres.
+4. Consulta la sección de Detalles para ver un resumen por patente.
+5. Revisa los gráficos generales para obtener insights financieros y operativos.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Contribuciones
+
+Las contribuciones son bienvenidas. Si deseas contribuir al proyecto, por favor:
+
+1. Haz un fork del repositorio.
+2. Crea una rama para tu característica.
+3. Haz tus cambios y commit.
+4. Push a tu fork y solicita un pull request.

@@ -14,6 +14,7 @@ import { ServicioComponent } from './components/servicio/servicio.component';
 import { ListadoServiciosComponent } from './components/listado-servicios/listado-servicios.component';
 import { ListadoAlquileresComponent } from './components/listado-alquileres/listado-alquileres.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { DetalleComponent } from './components/detalle/detalle.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -25,14 +26,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'inicio', component: InicioComponent },
-      { path: 'alta', component: AltaComponent },
-      { path: 'listado', component: ListadoComponent },
-      { path: 'alquiler', component: AlquilerComponent },
-      { path: 'servicio', component: ServicioComponent },
-      { path: 'listadoS', component: ListadoServiciosComponent },
-      { path: 'listadoA', component: ListadoAlquileresComponent },
+      { path: 'altaAuto', component: AltaComponent },
+      { path: 'altaAlquiler', component: AlquilerComponent },
+      { path: 'altaServicio', component: ServicioComponent },
+      { path: 'listadoAutos', component: ListadoComponent },
+      { path: 'listadoServicios', component: ListadoServiciosComponent },
+      { path: 'listadoAlquileres', component: ListadoAlquileresComponent },
       { path: 'cuentas', component: CuentasComponent },
-      // { path: 'caja', component: CajaComponent },
+      { path: 'detalles', component: DetalleComponent },
     ],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

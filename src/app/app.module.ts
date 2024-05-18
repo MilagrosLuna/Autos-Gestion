@@ -42,6 +42,7 @@ import { DeleteComponent } from './components/modals/delete/delete.component';
 import { ListComponent } from './components/list/list.component';
 import { ListadoAlquileresComponent } from './components/listado-alquileres/listado-alquileres.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { DetalleComponent } from './components/detalle/detalle.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
     ListComponent,
     ListadoAlquileresComponent,
     InicioComponent,
+    DetalleComponent,
   ],
   imports: [
     CurrencyPipe,
