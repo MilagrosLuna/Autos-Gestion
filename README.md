@@ -25,7 +25,7 @@ Para instalar y ejecutar este proyecto localmente, sigue estos pasos:
 
 1. Clona el repositorio en tu máquina local.
 2. Navega al directorio del proyecto y ejecuta `npm install` para instalar las dependencias.
-3. Inicia el servidor de desarrollo con `ng serve`.
+3. Inicia el servidor de desarrollo con `npm run dev`.
 4. Abre tu navegador y visita `http://localhost:4200/`.
 
 ## Uso
