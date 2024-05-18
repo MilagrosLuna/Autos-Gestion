@@ -1,0 +1,48 @@
+<div class="modal-content p-3">
+  <div *ngIf="entity" class="mb-3">
+    <!-- Campos comunes para todas las entidades -->
+    <h6 class="mb-2">Patente: {{ entity.data.patente }}</h6>
+
+    <!-- Campos específicos para Alquiler -->
+    <ng-container *ngIf="entityType === 'alquileres'">
+      <p class="mb-2">Detalle: {{ entity.data.detalle }}</p>
+      <p class="mb-2">Chofer: {{ entity.data.chofer }}</p>
+      <p class="mb-2">
+        Precio Diario: {{ entity.data.precioDiario | currency }}
+      </p>
+      <p class="mb-2">Precio Total: {{ entity.data.precioTotal | currency }}</p>
+      <p class="mb-2">
+        Fecha Inicio: {{ entity.data.fechaInicio | date : "dd/MM/yyyy" }}
+      </p>
+      <p class="mb-2">
+        Fecha Fin: {{ entity.data.fechaFin | date : "dd/MM/yyyy" }}
+      </p>
+    </ng-container>
+
+    <!-- Campos específicos para Auto -->
+    <ng-container *ngIf="entityType === 'autos'">
+      <p class="mb-2">Titular: {{ entity.data.titular }}</p>
+      <p class="mb-2">Aseguradora: {{ entity.data.aseguradora }}</p>
+      <p class="mb-2">Chofer: {{ entity.data.chofer }}</p>
+      <p class="mb-2">Kilometraje: {{ entity.data.kilometraje }}</p>
+      <p class="mb-2">Multas: {{ entity.data.multas }}</p>
+      <p class="mb-2">Alquilado: {{ entity.data.alquilado ? "Sí" : "No" }}</p>
+    </ng-container>
+
+    <!-- Campos específicos para Servicio -->
+    <ng-container *ngIf="entityType === 'servicios'">
+      <p class="mb-2">Detalle: {{ entity.data.detalle }}</p>
+      <p class="mb-2">Taller Mecánico: {{ entity.data.tallerMecanico }}</p>
+      <p class="mb-2">Precio: {{ entity.data.precio | currency }}</p>
+      <p class="mb-2">Fecha: {{ entity.data.fecha | date : "dd/MM/yyyy" }}</p>
+    </ng-container>
+  </div>
+
+  <!-- Botones -->
+  <button type="button" class="btn btn-success mb-2" (click)="confirmar()">
+    Confirmar Eliminar
+  </button>
+  <button type="button" class="btn btn-danger" (click)="cancelar()">
+    Cancelar
+  </button>
+</div>

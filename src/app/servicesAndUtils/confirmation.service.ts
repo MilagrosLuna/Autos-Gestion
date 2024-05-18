@@ -9,12 +9,16 @@ export class ConfirmationService {
   private confirmationSubject = new Subject<boolean>();
   private deleteSubject = new Subject<void>();
   private deleteSSubject = new Subject<void>();
-  private modifyAutoSubject = new Subject<void>();
-  private modifyServicioSubject = new Subject<void>();
+  private modifySubject = new Subject<void>();
 
   getDeleteEvent(): Observable<void> {
     return this.deleteSubject.asObservable();
   }
+  emitDeleteEvent(): void {
+    this.deleteSubject.next();
+  }
+
+
 
   getDeleteSEvent(): Observable<void> {
     return this.deleteSSubject.asObservable();
@@ -24,23 +28,18 @@ export class ConfirmationService {
     this.deleteSSubject.next();
   }
 
-  emitDeleteEvent(): void {
-    this.deleteSubject.next();
+
+
+  emitModifyEvent(): void {
+    this.modifySubject.next();
+  }
+  getModifyEvent(): Observable<void> {
+    return this.modifySubject.asObservable();
   }
 
-  emitModifyservicioEvent(): void {
-    this.modifyServicioSubject.next();
-  }
-  getmodifyServicioEvent(): Observable<void> {
-    return this.modifyServicioSubject.asObservable();
-  }
+ 
 
-  emitModifyAutoEvent(): void {
-    this.modifyAutoSubject.next();
-  }
-  getmodifyAutoEvent(): Observable<void> {
-    return this.modifyAutoSubject.asObservable();
-  }
+
 
   getConfirmationState() {
     return this.confirmationSubject.asObservable();

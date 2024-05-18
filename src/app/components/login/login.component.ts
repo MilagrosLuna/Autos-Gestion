@@ -42,7 +42,7 @@ export class LoginComponent {
         if (usuario.length > 0 && usuario[0].data.aprobado) {
           localStorage.setItem('logueado', user.user.uid);
           this.alerts.showSuccessMessageAndNavigate(
-            ['/home/alta'],
+            ['/home/inicio'],
             '¡Inicio de sesión exitoso!',
             'Bienvenido'
           );

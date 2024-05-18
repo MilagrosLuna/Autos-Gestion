@@ -4,22 +4,25 @@ import { ConfirmationService } from 'src/app/servicesAndUtils/confirmation.servi
 import { FirebaseService } from 'src/app/servicesAndUtils/firebase.service';
 
 @Component({
-  selector: 'app-delete-auto',
-  templateUrl: './delete-auto.component.html',
-  styleUrls: ['./delete-auto.component.scss'],
+  selector: 'app-delete',
+  templateUrl: './delete.component.html',
+  styleUrls: ['./delete.component.scss'],
 })
-export class DeleteAutoComponent {
-  @Input() auto: any;
+export class DeleteComponent {
+  @Input() entity: any;
+  @Input() entityType: string = 'defaultType';
 
   constructor(
-    public modalRef: MdbModalRef<DeleteAutoComponent>,
+    public modalRef: MdbModalRef<DeleteComponent>,
     private confirmationService: ConfirmationService,
     private firebase: FirebaseService
-  ) {}
-
+  ) {
+    this.entityType = this.entityType || 'defaultType';
+  }
   async confirmar() {
-    await this.firebase.guardar(this.auto, 'autosArchivo');
-    await this.firebase.borrar(this.auto, 'autos');
+    const archiveCollection = this.entityType + 'Archivo';
+    await this.firebase.guardar(this.entity, archiveCollection);
+    await this.firebase.borrar(this.entity, this.entityType);
 
     this.confirmationService.emitDeleteEvent();
     this.confirmationService.setConfirmationState(true);

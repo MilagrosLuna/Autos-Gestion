@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand me-2" href="/home">
+    <a class="navbar-brand me-2">
       <img
         src="../../../assets/logo.png"
         height="16"
@@ -28,7 +28,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <div *ngIf="logueado">
-            <a class="nav-link" href="/home/alta">Inicio</a>
+            <a class="nav-link" href="/home/inicio">Inicio</a>
           </div>
           <div *ngIf="!logueado">
             <a class="nav-link" href="/login">Inicio</a>
@@ -41,45 +41,18 @@
           <button
             type="button"
             class="btn btn-link px-3 me-2"
+            (click)="goTo('home/inicio')"
+          >
+            Home
+          </button>
+          <button
+            type="button"
+            class="btn btn-link px-3 me-2"
             (click)="goTo('home/cuentas')"
           >
             Alta Cuentas
           </button>
-          <button
-            type="button"
-            class="btn btn-link px-3 me-2"
-            (click)="goTo('home/alquiler')"
-          >
-            Alquiler
-          </button>
-          <button
-            type="button"
-            class="btn btn-link px-3 me-2"
-            (click)="goTo('home/servicio')"
-          >
-            Cargar Servicio
-          </button>
-          <button
-            type="button"
-            class="btn btn-link px-3 me-2"
-            (click)="goTo('home/listadoS')"
-          >
-            Ver Servicios
-          </button>
-          <button
-            type="button"
-            class="btn btn-link px-3 me-2"
-            (click)="goTo('home/listado')"
-          >
-            Ver Autos
-          </button>
-          <button
-            type="button"
-            class="btn btn-link px-3 me-2"
-            (click)="goTo('home/alta')"
-          >
-            Cargar Autos
-          </button>
+
           <button type="button" class="btn btn-danger me-3" (click)="logOut()">
             cerrar sesion
           </button>

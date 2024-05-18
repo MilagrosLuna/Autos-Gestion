@@ -1,0 +1,104 @@
+<div class="container py-5">
+  <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+    <!-- Grupo Alquileres -->
+    <div class="col">
+      <div class="card h-100">
+        <img
+          src="../assets/alquiler.jpg"
+          class="card-img-top"
+          alt="Alquileres"
+        />
+        <div class="card-body">
+          <h5 class="card-title">Alquileres</h5>
+          <p class="card-text">
+            Gestiona tus alquileres de forma rápida y sencilla.
+          </p>
+          <button
+            type="button"
+            class="btn btn-info w-100 mb-2"
+            (click)="goTo('home/alquiler')"
+          >
+            Cargar Alquiler
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-info w-100"
+            (click)="goTo('home/listadoA')"
+          >
+            Ver Alquileres
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grupo Servicios -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="../assets/service.jpg" class="card-img-top" alt="Servicios" />
+        <div class="card-body">
+          <h5 class="card-title">Servicios</h5>
+          <p class="card-text">
+            Añade y consulta servicios asociados a tus vehículos.
+          </p>
+          <button
+            type="button"
+            class="btn btn-warning w-100 mb-2"
+            (click)="goTo('home/servicio')"
+          >
+            Cargar Servicio
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-warning w-100"
+            (click)="goTo('home/listadoS')"
+          >
+            Ver Servicios
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grupo Autos -->
+    <div class="col">
+      <div class="card h-100">
+        <img src="../assets/auto.jpg" class="card-img-top" alt="Autos" />
+        <div class="card-body">
+          <h5 class="card-title">Autos</h5>
+          <p class="card-text">Explora y administra tu flota de vehículos.</p>
+          <button
+            type="button"
+            class="btn btn-primary w-100 mb-2"
+            (click)="goTo('home/alta')"
+          >
+            Cargar Autos
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-primary w-100"
+            (click)="goTo('home/listado')"
+          >
+            Ver Autos
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-body h-100">
+          <h5 class="card-title">Servicio x patente</h5>
+          <canvas #graficoServicioXPatente></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body h-100">
+          <h5 class="card-title">Ingresos x patente</h5>
+          <canvas #graficoGastos></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

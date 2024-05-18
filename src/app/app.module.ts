@@ -37,10 +37,11 @@ import { ServicioComponent } from './components/servicio/servicio.component';
 import { CuentasComponent } from './components/cuentas/cuentas.component';
 import { ListadoServiciosComponent } from './components/listado-servicios/listado-servicios.component';
 import { CurrencyPipe } from '@angular/common';
-import { DeleteAutoComponent } from './components/modals/delete-auto/delete-auto.component';
-import { DeleteServicioComponent } from './components/modals/delete-servicio/delete-servicio.component';
-import { ModifyAutoComponent } from './components/modals/modify-auto/modify-auto.component';
-import { ModifyServicioComponent } from './components/modals/modify-servicio/modify-servicio.component';
+import { ModifyComponent } from './components/modals/modify/modify.component';
+import { DeleteComponent } from './components/modals/delete/delete.component';
+import { ListComponent } from './components/list/list.component';
+import { ListadoAlquileresComponent } from './components/listado-alquileres/listado-alquileres.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 
 @NgModule({
   declarations: [
@@ -58,10 +59,11 @@ import { ModifyServicioComponent } from './components/modals/modify-servicio/mod
     CuentasComponent,
     ServicioComponent,
     ListadoServiciosComponent,
-    DeleteAutoComponent,
-    DeleteServicioComponent,
-    ModifyAutoComponent,
-    ModifyServicioComponent,
+    ModifyComponent,
+    DeleteComponent,
+    ListComponent,
+    ListadoAlquileresComponent,
+    InicioComponent,
   ],
   imports: [
     CurrencyPipe,

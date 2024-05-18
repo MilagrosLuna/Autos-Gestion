@@ -1,0 +1,128 @@
+<div class="modal-content p-3">
+  <div *ngIf="entityCopy" class="mb-3">
+    <!-- Campos comunes para todas las entidades -->
+    <label class="mb-2">Patente:</label>
+    <input
+      type="text"
+      [(ngModel)]="entityCopy.data.patente"
+      class="form-control mb-2"
+    />
+
+    <!-- Campos específicos para Alquiler -->
+    <ng-container *ngIf="entityType === 'alquileres'">
+      <label class="mb-2">Detalle:</label>
+      <input
+        type="text"
+        [(ngModel)]="entityCopy.data.detalle"
+        class="form-control mb-2"
+      />
+      <label class="mb-2">Chofer:</label>
+      <input
+        type="text"
+        [(ngModel)]="entityCopy.data.chofer"
+        class="form-control mb-2"
+      />
+      <label class="mb-2">Precio Diario:</label>
+      <input
+        type="number"
+        [(ngModel)]="entityCopy.data.precioDiario"
+        class="form-control mb-2"
+      />
+      <label class="mb-2">Precio Total:</label>
+      <input
+        type="number"
+        [(ngModel)]="entityCopy.data.precioTotal"
+        class="form-control mb-2"
+      />
+      <label class="mb-2">Fecha Inicio:</label>
+      <input
+        type="date"
+        [(ngModel)]="entityCopy.data.fechaInicio"
+        class="form-control mb-2"
+      />
+      <label class="mb-2">Fecha Fin:</label>
+      <input
+        type="date"
+        [(ngModel)]="entityCopy.data.fechaFin"
+        class="form-control mb-2"
+      />
+    </ng-container>
+
+    <!-- Campos específicos para Auto -->
+    <ng-container *ngIf="entityType === 'autos'">
+      <label class="mb-2">Titular:</label>
+      <input
+        type="text"
+        [(ngModel)]="entityCopy.data.titular"
+        class="form-control mb-2"
+      />
+      <label class="mb-2">Aseguradora:</label>
+      <input
+        type="text"
+        [(ngModel)]="entityCopy.data.aseguradora"
+        class="form-control mb-2"
+      />
+      <label class="mb-2">Chofer:</label>
+      <input
+        type="text"
+        [(ngModel)]="entityCopy.data.chofer"
+        class="form-control mb-2"
+      />
+      <label class="mb-2">Kilometraje:</label>
+      <input
+        type="number"
+        [(ngModel)]="entityCopy.data.kilometraje"
+        class="form-control mb-2"
+      />
+      <label class="mb-2">Multas:</label>
+      <input
+        type="number"
+        [(ngModel)]="entityCopy.data.multas"
+        class="form-control mb-2"
+      />
+      <label class="mb-2">Alquilado:</label>
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="alquilado"
+        [(ngModel)]="entityCopy.data.alquilado"
+      />
+    </ng-container>
+
+    <!-- Campos específicos para Servicio -->
+    <ng-container *ngIf="entityType === 'servicios'">
+      <label class="mb-2">Detalle:</label>
+      <input
+        type="text"
+        [(ngModel)]="entityCopy.data.detalle"
+        class="form-control mb-2"
+      />
+      <label class="mb-2">Taller Mecánico:</label>
+      <input
+        type="text"
+        [(ngModel)]="entityCopy.data.tallerMecanico"
+        class="form-control mb-2"
+      />
+      <label class="mb-2">Precio:</label>
+      <input
+        type="number"
+        [(ngModel)]="entityCopy.data.precio"
+        class="form-control mb-2"
+      />
+      <label class="mb-2">Fecha:</label>
+      <input
+        type="date"
+        [(ngModel)]="entityCopy.data.fecha"
+        class="form-control mb-2"
+      />
+    </ng-container>
+  </div>
+
+  <!-- Botones -->
+  <button type="button" class="btn btn-success mb-2" (click)="confirmar()">
+    Confirmar Modificación
+  </button>
+  <button type="button" class="btn btn-danger" (click)="cancelar()">
+    Cancelar
+  </button>
+</div>

@@ -1,0 +1,20 @@
+.card-img-top {
+  height: 210px; /* Establece la altura que prefieras */
+  object-fit: cover; /* Esto asegurará que la imagen cubra el área sin distorsionarse */
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; // Esto asegura que el contenido de la tarjeta se distribuya uniformemente
+}
+
+.card-body {
+  flex: 1; // Esto permite que el cuerpo de la tarjeta ocupe todo el espacio disponible
+  display: flex;
+  flex-direction: column;
+  justify-content: center; // Centra el contenido del cuerpo de la tarjeta verticalmente
+}
+
+canvas {
+  max-height: 285px; // Establece una altura máxima para los gráficos
+}
