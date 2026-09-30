@@ -25,17 +25,13 @@ export class AuthService {
     private router: Router,
     private firebase: FirebaseService
   ) {
-    const user = auth.currentUser;
-    const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
-    this.user$.next(!!user || !!storedUser);
+    this.user$.next(!!auth.currentUser);
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
         this.user$.next(true);
 
-        const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
-
-        if (!storedUser) {
+        if (!localStorage.getItem('user')) {
           localStorage.setItem('user', JSON.stringify(user));
         }
       } else {

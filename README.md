@@ -1,48 +1,87 @@
 # Gestión de Flota de Vehículos
 
-## Descripción
+Sistema web para administrar una flota de autos: altas de vehículos, servicios de taller, alquileres y un resumen económico por patente.
 
-Este proyecto es un sistema de gestión de flota de vehículos diseñado para facilitar la administración de autos, servicios y alquileres. Permite a los usuarios cargar y gestionar información detallada de cada vehículo, registrar servicios, administrar alquileres, y visualizar secciones específicas para cada categoría. Además, incluye una sección de detalles que muestra información consolidada por patente y dos gráficos generales que ofrecen una visión del balance económico y la cantidad de servicios por patente.
+## Funcionalidades
 
-## Características
+- **Autos:** alta y listado con patente, titular, aseguradora, kilometraje y multas.
+- **Servicios:** registro de cada servicio (taller, detalle, precio y fecha).
+- **Alquileres:** chofer, precio diario, total y fechas de inicio y fin.
+- **Detalle por patente:** total de alquileres, total de servicios y balance.
+- **Gráficos:** balance económico general y cantidad de servicios por patente.
+- **Borrado con archivo:** lo que se elimina se copia a `<colección>Archivo` antes de borrarse.
+- **Cuentas:** registro con verificación de mail y aprobación manual de un administrador.
 
-- **Carga de Autos:** Permite ingresar nuevos vehículos a la flota con detalles como patente, titular, aseguradora, kilometraje y multas.
-- **Gestión de Servicios:** Registra los servicios realizados a cada vehículo, incluyendo detalles del taller mecánico, precio y fecha del servicio.
-- **Administración de Alquileres:** Controla los alquileres de los vehículos, especificando la patente, detalle del alquiler, chofer, precio diario y total, y las fechas de inicio y fin del alquiler.
-- **Visualización por Secciones:** Ofrece la posibilidad de ver cada sección (Autos, Servicios, Alquileres) de manera independiente para una gestión más eficiente.
-- **Sección de Detalles:** Muestra un resumen detallado de cada patente, incluyendo el total de alquileres, servicios y el balance económico.
-- **Gráficos Generales:** Presenta dos gráficos que ilustran el balance económico general y la cantidad de servicios realizados por patente.
+## Stack
 
-## Tecnologías Utilizadas
+- Angular 16 (módulos, SCSS)
+- Firebase: Authentication, Firestore y Hosting
+- MDB Angular UI Kit, Chart.js, SweetAlert2, EmailJS
 
-- Angular para el frontend.
-- Firebase para la base de datos y el backend.
-- Chart.js para la visualización de gráficos.
+## Correr el proyecto en local
 
-## Instalación
+Requisitos: Node 18+ y npm.
 
-Para instalar y ejecutar este proyecto localmente, sigue estos pasos:
+```bash
+git clone https://github.com/MilagrosLuna/Autos-Gestion.git
+cd Autos-Gestion
+npm install      # crea src/environments/environment.ts desde la plantilla si no existe
+npm run dev      # http://localhost:4200
+```
 
-1. Clona el repositorio en tu máquina local.
-2. Navega al directorio del proyecto y ejecuta `npm install` para instalar las dependencias.
-3. Inicia el servidor de desarrollo con `npm run dev`.
-4. Abre tu navegador y visita `http://localhost:4200/`.
+`npm run dev` usa `src/environments/environment.development.ts`, que apunta al proyecto de Firebase de desarrollo (`autos-luna`).
 
-## Uso
+### Configuración de entornos
 
-Para comenzar a utilizar la aplicación:
+| Archivo | Uso | En git |
+| --- | --- | --- |
+| `environment.development.ts` | `npm run dev` y builds de desarrollo | Sí |
+| `environment.ts` | Build de producción (`npm run build` / `deploy`) | No |
+| `environment.example.ts` | Plantilla de `environment.ts` | Sí |
 
-1. Navega a la sección de Autos para cargar y ver los vehículos.
-2. Utiliza la sección de Servicios para añadir y consultar servicios.
-3. Administra los alquileres en la sección de Alquileres.
-4. Consulta la sección de Detalles para ver un resumen por patente.
-5. Revisa los gráficos generales para obtener insights financieros y operativos.
+Para producción, completá `firebaseConfig` en `src/environments/environment.ts` con la configuración del proyecto `gestion-autos` (Consola de Firebase > Configuración del proyecto > Tus apps).
 
-## Contribuciones
+## Acceso
 
-Las contribuciones son bienvenidas. Si deseas contribuir al proyecto, por favor:
+1. Registrarse desde `/register`.
+2. Verificar el mail.
+3. Un administrador aprueba la cuenta desde **Cuentas**.
 
-1. Haz un fork del repositorio.
-2. Crea una rama para tu característica.
-3. Haz tus cambios y commit.
-4. Push a tu fork y solicita un pull request.
+Los administradores se cargan a mano en la colección `admins` de Firestore (documento con el campo `id` igual al `uid` del usuario).
+
+## Seguridad (Firestore)
+
+Las reglas están en [`firestore.rules`](firestore.rules):
+
+- Los datos de la flota (`autos`, `servicios`, `alquileres` y sus archivos) solo se leen y escriben con sesión iniciada y mail verificado.
+- Un usuario solo puede crear su propio registro en `usuarios`, y siempre con `aprobado: false`.
+- `admins` es de solo lectura desde la app.
+
+Para publicarlas:
+
+```bash
+firebase deploy --only firestore:rules --project default
+```
+
+## Scripts
+
+| Comando | Qué hace |
+| --- | --- |
+| `npm run dev` | Servidor de desarrollo con el entorno de desarrollo |
+| `npm run build` | Build de producción en `dist/gestion_autos` |
+| `npm run deploy` | Build de producción + deploy a Firebase Hosting |
+| `npm test` | Tests unitarios con Karma |
+
+## Estructura
+
+```
+src/app/
+├── classes/           # Modelos: Auto, Servicio, Alquiler, Cuenta, Detalle
+├── components/        # Vistas: altas, listados, detalle, cuentas, login, etc.
+│   └── modals/        # Modales de edición y borrado
+└── servicesAndUtils/  # Auth, Firestore, guard, alertas, pipe de moneda
+```
+
+## Autora
+
+[@MilagrosLuna](https://github.com/MilagrosLuna)
