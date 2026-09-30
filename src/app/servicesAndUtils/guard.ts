@@ -1,35 +1,22 @@
 import { Injectable } from '@angular/core';
-import {
-  CanActivate,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  UrlTree,
-  Router,
-} from '@angular/router';
-import { Observable, map, take } from 'rxjs';
-import { AuthService } from './auth.service';
+import { CanActivate, Router, UrlTree } from '@angular/router';
+import { auth } from 'src/main';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private router: Router) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
+  // Espera a que Firebase resuelva la sesión y exige que el login haya pasado
+  // la verificación de cuenta aprobada ('logueado' se guarda recién ahí).
+  async canActivate(): Promise<boolean | UrlTree> {
+    await auth.authStateReady();
+    const user = auth.currentUser;
 
-    if (this.authService.isUserAuthenticated() || !!storedUser) {
+    if (user && localStorage.getItem('logueado') === user.uid) {
       return true;
-    } else {
-      this.router.navigate(['/login']);
-      return false;
     }
+    return this.router.parseUrl('/login');
   }
 }

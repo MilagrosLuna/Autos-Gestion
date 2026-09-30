@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deploy": "ng build --configuration=production && firebase deploy --only hosting --project default",
-    "dev": "ng serve --configuration=development "
+    "dev": "ng serve --configuration=development",
+    "postinstall": "node -e \"const fs=require('fs'),f='src/environments/environment.ts';if(!fs.existsSync(f)){fs.copyFileSync('src/environments/environment.example.ts',f);console.log('Creado '+f+' desde la plantilla')}\""
   },
   "private": true,
   "dependencies": {
